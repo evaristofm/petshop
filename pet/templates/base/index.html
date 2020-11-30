@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>pets welcome!</h1>
+    </div>
+    
+    <div>
+        <ul>
+            <h3>Lista de Proprietários</h3>
+            {% for p in props %}
+                <li>{{ p }}</li>
+            {% endfor %}
+            </ul>
+    </div>
+
+    <div>
+        <h3>Lista de Pets</h3> 
+        <ul>
+            {% for pet in pets %}
+                <li>{{ pet.nome }} - {{ pet.especie }} - {{ pet.raca }}</li>
+
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h3>Consultas</h3>
+        <ul>
+            {% for c in consultas %}
+                {{ c }}
+            {% endfor %}
+        </ul>
+    </div>
+  
+</body>
+</html>
