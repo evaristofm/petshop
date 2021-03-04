@@ -10,7 +10,20 @@ class Proprietario(models.Model):
     date_create = models.DateField(auto_now_add=True, null=True)
     
     def __str__(self):
+
         return self.name
+
+
+class Service(models.Model):
+    nome = models.CharField(max_length=100)
+    preco = models.FloatField()
+    descricao = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
+
+
+
 
 class Pet(models.Model):
     nome = models.CharField(max_length=50)
@@ -23,16 +36,10 @@ class Pet(models.Model):
     porte = models.CharField(max_length=30)
     obs = models.TextField(null=True, blank=True)
 
-    prop = models.ManyToManyField(Proprietario)
+    proprietario = models.ForeignKey(Proprietario, on_delete=models.CASCADE)
+    services = models.ManyToManyField(Service)
+    #consultas = models.ManyToManyField(Consultas)
 
-
-    def __str__(self):
-        return self.nome
-
-class Service(models.Model):
-    nome = models.CharField(max_length=100)
-    preco = models.FloatField()
-    descricao = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -45,7 +52,5 @@ class Consulta(models.Model):
 
     def __str__(self):
         return f"{self.pet} - {self.data}"
-
-
 
 
