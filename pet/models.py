@@ -27,17 +27,17 @@ class Service(models.Model):
 
 class Pet(models.Model):
     nome = models.CharField(max_length=50)
-    especie = models.CharField(max_length=30)
-    raca = models.CharField(max_length=30)
-    peso = models.FloatField()
-    idade = models.IntegerField()
-    nasc = models.DateField()
+    especie = models.CharField(max_length=30, blank=True)
+    raca = models.CharField(max_length=30, blank=True)
+    peso = models.FloatField(blank=True)
+    idade = models.IntegerField(blank=True)
+    nasc = models.DateField(blank=True)
     sexo = models.CharField(max_length=1)
-    porte = models.CharField(max_length=30)
+    porte = models.CharField(max_length=30, blank=True)
     obs = models.TextField(null=True, blank=True)
 
     proprietario = models.ForeignKey(Proprietario, on_delete=models.CASCADE)
-    services = models.ManyToManyField(Service)
+    services = models.ManyToManyField(Service, blank=True)
     #consultas = models.ManyToManyField(Consultas)
 
 
