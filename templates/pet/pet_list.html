@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+        <p>{{request.user}}</p>
+        <a href="{% url 'logout' %}">Sair</a>
+    {% else %}
+        <a href="{% url 'login' %}"></a>
+    {% endif %}
+    <hr>
+    <div>
+        <h1>pets welcome! {{request.user}}</h1>
+    </div>
+
+    <div>
+        <h3>Lista de Pets</h3> 
+        <h5>Adicione um Pet</h5>
+        <a href="{% url 'pet-add'%}">Adicionar</a>
+        <ul>
+            {% for pet in pets %}
+            
+            <a href="{% url 'pet-update' pet.id %}"><li>{{ pet.nome }}</a> <a href="{% url 'pet-update' pet.id %}">Editar</a> <a href="{% url 'pet-delete' pet.id %}">Deletar</a></li>
+
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

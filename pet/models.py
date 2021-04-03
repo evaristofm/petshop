@@ -2,16 +2,6 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-# Create your models here.
-
-class Proprietario(models.Model):
-    name = models.CharField(max_length=200, null=True)
-    phone = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
-    date_create = models.DateField(auto_now_add=True, null=True)
-    
-    def __str__(self):
-        return self.name
 
 
 class Service(models.Model):
@@ -21,8 +11,6 @@ class Service(models.Model):
 
     def __str__(self):
         return self.nome
-
-
 
 
 class Pet(models.Model):
@@ -36,9 +24,12 @@ class Pet(models.Model):
     porte = models.CharField(max_length=30, blank=True)
     obs = models.TextField(null=True, blank=True)
 
-    proprietario = models.ForeignKey(Proprietario, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     services = models.ManyToManyField(Service, null=True, blank=True)
     #consultas = models.ManyToManyField(Consultas)
+
+    class Meta:
+        ordering = ['nome']
 
     def get_absolute_url(self):
         return reverse('pet-detail', kwargs={'pk': self.pk})
