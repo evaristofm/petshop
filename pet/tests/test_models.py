@@ -1,7 +1,6 @@
 from django.test import TestCase
-from django.test import Client, TestCase
 
-from .models import Pet, Proprietario, Service, Consulta
+from ..models import Proprietario, Pet
 
 
 class ProprietarioTestCase(TestCase):
@@ -20,9 +19,4 @@ class ProprietarioTestCase(TestCase):
         Pet.objects.create(nome="Max", especie="Cachorro", raca="Pitbull", proprietario=p2)
         Pet.objects.create(nome="Marley", especie="Cachorro", raca="Vira lata", proprietario=p1)
 
-    def test_index(self):
-        c = Client()
-        response = c.get("/pets/")
-        self.assertEqual(response.status_code, 200)
-    
     

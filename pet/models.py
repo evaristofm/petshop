@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -10,7 +11,6 @@ class Proprietario(models.Model):
     date_create = models.DateField(auto_now_add=True, null=True)
     
     def __str__(self):
-
         return self.name
 
 
@@ -36,9 +36,12 @@ class Pet(models.Model):
     porte = models.CharField(max_length=30, blank=True)
     obs = models.TextField(null=True, blank=True)
 
-    proprietario = models.ForeignKey(Proprietario, on_delete=models.CASCADE)
-    services = models.ManyToManyField(Service, blank=True)
+    proprietario = models.ForeignKey(Proprietario, on_delete=models.CASCADE, null=True, blank=True)
+    services = models.ManyToManyField(Service, null=True, blank=True)
     #consultas = models.ManyToManyField(Consultas)
+
+    def get_absolute_url(self):
+        return reverse('pet-detail', kwargs={'pk': self.pk})
 
 
     def __str__(self):

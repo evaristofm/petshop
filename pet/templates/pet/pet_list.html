@@ -13,8 +13,8 @@
     <div>
         <ul>
             <h3>Lista de Proprietários</h3>
-            {% for p in props %}
-                <li>{{ p }}</li>
+            {% for p in proprietarios %}
+                <li>{{ p.name }}</li>
             {% endfor %}
             </ul>
     </div>
@@ -33,7 +33,7 @@
         <h3>Consultas</h3>
         <ul>
             {% for c in consultas %}
-                {{ c }}
+                {{ c.pet.nome }}
             {% endfor %}
         </ul>
     </div>
